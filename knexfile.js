@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
     development: {
         client: 'pg',
-        connection: 'postgres://localhost/into_to_knex'
+        connection: 'postgres://localhost/games'
     },
     production: {
         client: 'pg',
