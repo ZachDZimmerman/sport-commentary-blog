@@ -1,27 +1,25 @@
 var express = require('express');
 var router = express.Router();
-var blog = require('../db/api');
+var knex = require('../db/knex');
 
-router.get('/', function(req, res, next) {
-  blog.get().then(function(blog) {
-    res.render('index', {blog: blog });
-  })
+router.get('/', function(request, response, next) {
+  knex("users")
+    .select()
+    // .select(["users.name as User", "post.name as Post"])
+    .join("comment", function () {
+      this.on("users.id", "=", "comment.users_id")
+    })
+    .join("post", function () {
+      this.on("post.id", "=", "comment.post_id")
+    })
+    .then(function (data) {
+      console.log(data)
+      response.render('index', {users: data });
+    })
+    .catch(function (error) {
+      console.error(error)
+      next(error)
+    })
 });
-
-router.get('/add', function (req, res, next) {
-  res.render('show');
-})
-
-router.post('/', function (req, res, next) {
-  blog.insert(req.body).then(function () {
-    res.redirect('/')
-  })
-})
-
-router.post('/delete', function (req, res, next) {
-  blog.delete(req.body.id).then(function () {
-    res.redirect('/')
-  })
-})
 
 module.exports = router;

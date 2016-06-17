@@ -1,21 +1,23 @@
 exports.seed = function(knex, Promise) {
+
+  // promise.all([])
     return knex('comment').del().then(
             function() {
                 return knex('post').del()
             }).then(
             function() {
-                return knex('user').del()
+                return knex("users").del()
             }
         )
         .then(function() {
             return Promise.join(
-                knex('user').insert({
+                knex("users").insert({
                     name: 'Pawel Maciulewski'
                 }).returning('id'),
-                knex('user').insert({
+                knex("users").insert({
                     name: 'Zach Zimmerman'
                 }).returning('id'),
-                knex('user').insert({
+                knex("users").insert({
                     name: 'Evan McClaugherty'
                 }).returning('id')
             );
@@ -29,19 +31,19 @@ exports.seed = function(knex, Promise) {
                     name: 'Germany vs. POLAND',
                     blog: 'POLSKA FOR LIFE BROS',
                     image: 'https://pbs.twimg.com/media/ByAQ6tDIEAAPDhJ.jpg',
-                    user_id: pawel
+                    users_id: pawel
                 }).returning('id'),
                 knex('post').insert({
                     name: 'NBA Finals Game 6',
                     blog: 'Golden State is up 3-2 in the series and the Cavs are at home in Cleveland. I see the Cavs squeezing out game 6 and forcing a Game 7!',
                     image: 'http://media.cleveland.com/plain-dealer/photo/2014/09/18/proposed-lebron-james-banner-5563d1c42bfde2a9.jpg',
-                    user_id: zach
+                    users_id: zach
                 }).returning('id'),
                 knex('post').insert({
                     name: 'Ping Pong Championship',
                     blog: 'I love it when Ma Long screams everytime he hits the ball!',
                     image: 'http://ste.india.com/sites/default/files/2015/05/02/352944-ma-long.jpg',
-                    user_id: evan
+                    users_id: evan
                 }).returning('id')
             ).then(function(postIds) {
                 return {
@@ -62,17 +64,17 @@ exports.seed = function(knex, Promise) {
             return Promise.join(
                 knex('comment').insert({
                     comment: 'POLSKA POLSKA POLSKA POLSKA POLSKA POLSKA POLSKA!',
-                    user_id: data.users.zach,
+                    users_id: data.users.zach,
                     post_id: data.posts.zero
                 }),
                 knex('comment').insert({
                     comment: 'But you got to love Steph Curry!',
-                    user_id: data.users.evan,
+                    users_id: data.users.evan,
                     post_id: data.posts.one
                 }),
                 knex('comment').insert({
                     comment: 'Ma Long is my homeboi!',
-                    user_id: data.users.pawel,
+                    users_id: data.users.pawel,
                     post_id: data.posts.two
                 })
             );

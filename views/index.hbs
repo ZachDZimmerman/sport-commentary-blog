@@ -1,2 +1,11 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="">
+  <img src="http://spacecoastsports.com/wp-content/uploads/2014/06/sportsballs1.png" alt="" />
+</div>
+
+<h1>{{#each users}}</h1>
+  <ul>
+    <li>{{this.name}}</li>
+    <li>{{this.comment}}</li>
+    <li>{{this.post}}</li>
+  </ul>
+{{/each}}
