@@ -26,7 +26,7 @@ router.get('/create', function (req, res, next) {
 })
 
 router.get('/:id/edit', function (req, res, next) {
-  knex('post').where({id:req.params.id}).then(function (post) {
+  knex('post').where({id:req.params.id}).first().then(function (post) {
       res.render('edit', {post: post})
   })
 })
@@ -39,16 +39,16 @@ router.post('/:id/edit', function (req, res, next) {
 })
 
 router.get('/:id/delete', function (req, res, next) {
-  knex('users').where({id:
+  knex('post').where({id:
   req.params.id}).del().then(function () {
     res.redirect('/')
   })
 })
 
 router.get('/:id', function (req,res,next) {
-  knex('users').where({id:
-  req.params.id}).then(function (users) {
-    res.render('detail', {users:users})
+  knex('post').where({id:
+  req.params.id}).first().then(function (post) {
+    res.render('detail', {post:post})
   })
 });
 

@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
         table.string('blog');
         table.string('image');
         table.string('name');
-        table.integer('users_id').references('users.id');
+        table.integer('users_id').references('users.id').onDelete('cascade');
     });
 };
 
