@@ -5,7 +5,7 @@ var knex = require('../db/knex');
 router.get('/', function(request, response, next) {
   Promise.all([
     knex("post").select()
-      .join("users", function () {
+      .leftJoin("users", function () {
         this.on("users.id", "=", "post.users_id")
       })
       // .join("post", function () {
@@ -53,8 +53,16 @@ router.get('/:id', function (req,res,next) {
 });
 
 router.post('/create', function (req,res,next) {
-  knex("post").insert(req.body).then(function () {
-    res.redirect('/');
+  knex('users').insert({name: req.body.name}, 'id').then(function (id) {
+    var post = {
+        blog: req.body.blog,
+        image: req.body.image,
+        name: req.body.name,
+        users_id: id[0]
+    }
+    knex('post').insert(post).then(function () {
+      res.redirect('/');
+    })
   }).catch(function (err) {
     console.log(err);
     next(err)
