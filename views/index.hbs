@@ -1,11 +1,8 @@
-<div class="">
-  <img src="http://spacecoastsports.com/wp-content/uploads/2014/06/sportsballs1.png" alt="" />
-</div>
+{{#each post}}
+<h1>{{this.blog}}</h1>
 
-<h1>{{#each users}}</h1>
-  <ul>
-    <li>{{this.name}}</li>
-    <li>{{this.comment}}</li>
-    <li>{{this.post}}</li>
-  </ul>
+  <img src="{{this.image}}" alt="" />
+    <h3>By: {{this.name}}</h3>
 {{/each}}
+
+<a href="/create">Add Blog Post</a>
