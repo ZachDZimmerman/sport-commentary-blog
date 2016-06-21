@@ -7,11 +7,16 @@ a {
   color: #00B7FF;
 }
 
-img{
-  width: 40%;
-  height: 40%;
+img {
+  width: 70%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
 }
 h1 {
   font-size: 72px;
   text-align: center;
+}
+input{
+  width: 25%;
 }
