@@ -1,5 +1,5 @@
 exports.seed = function(knex, Promise) {
-  return knex.raw('TRUNCATE comment, post, users RESTART IDENTITY CASCADE')
+  return knex.raw('TRUNCATE comment, post, users, RESTART IDENTITY CASCADE')
     .then(function() {
         return Promise.all([
             knex("users").insert({
