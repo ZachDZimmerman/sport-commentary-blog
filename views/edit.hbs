@@ -1,8 +1,8 @@
 <form action="/{{post.id}}/edit" method="post">
-  <input type="text" value="{{post.name}}" name="name" placeholder="Name of Author">
+  <input type="text" value="{{post.name}}" name="name" placeholder="Title of blog">
   <br>
   <br>
-  <input type="text" value="{{post.blog}}" name="blog" placeholder="Name of blog">
+  <input type="text" value="{{post.blog}}" name="blog" placeholder="Description">
   <br>
   <br>
   <input type="url" value="{{post.image}}" name="image" placeholder="Image">
@@ -10,7 +10,6 @@
   <br>
   <br>
 
-  <!-- <textarea name="body" rows="8" cols="20" placeholder="Blog Body"></textarea> -->
-  <button type="submit" >Edit Post</button>
+  <button type="submit">Edit Post</button>
 </form>
 <!-- create a get for form, added create view, post route inserting into db -->

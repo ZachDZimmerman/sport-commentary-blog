@@ -1,9 +1,26 @@
-<h3>Blog Title: {{post.blog}}</h3>
+<h3>Title: {{post.name}}</h3>
 <br>
 <img src="{{post.image}}" alt="" />
 <br>
-<h5>By: {{post.name}}</h5>
+<h5>{{post.blog}}</h5>
+
+{{#each comments}}
+  <h4>Comment: {{this.comment}}</h4>
+  <a href="/{{../post.id}}/{{this.id}}/delete"><button type="button" name="comment">Delete</button></a>
+{{/each}}
+  <form action="/{{post.id}}" method="post">
+    <input type="text" name="name" placeholder="Author's Name">
+    <br>
+    <br>
+    <textarea name="comment" placeholder="Comment Here" rows="8" cols="40"></textarea>
+
+    <button type="submit">Leave Comment</button>
+  </form>
 <a href="/{{post.id}}/edit">Edit Post</a>
 <br>
 <br>
 <a href="/{{post.id}}/delete">Delete Post</a>
+<br>
+<br>
+
+<a href="/">HOME</a>
